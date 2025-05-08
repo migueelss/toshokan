@@ -28,7 +28,7 @@
             }
           }
         `,
-        variables: { search: "Naruto" }
+        variables: { search: "Fate/stay night: Unlimited Blade Works" }
       })
     })
     .then(res => res.json())
@@ -39,7 +39,7 @@
   </script>
   
   {#if anime.length}
-    <div>{anime[0].title.native}</div>
+    <div>{anime[1].title.native}</div>
   {:else}
     <div>Loading...</div>
   {/if}
