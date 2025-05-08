@@ -6,6 +6,7 @@
         english: string;
         native: string;
       };
+      bannerImage: string;
     };
   
     let anime: Anime[] = [];
@@ -24,11 +25,12 @@
                   english
                   native
                 }
+                bannerImage
               }
             }
           }
         `,
-        variables: { search: "Naruto" }
+        variables: { search: "Fate/stay night: Unlimited Blade Works" }
       })
     })
     .then(res => res.json())
@@ -39,8 +41,6 @@
   </script>
   
   {#if anime.length}
-    <div>{anime[0].title.native}</div>
-  {:else}
-    <div>Loading...</div>
+    <img src={anime[1].bannerImage} alt={anime[0].title.romaji} class="w-1/1 h-auto" />
   {/if}
   
