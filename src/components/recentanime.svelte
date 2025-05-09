@@ -1,6 +1,8 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { queryMedia } from "../../../graphql/media";
+    import { queryMedia } from "../graphql/media";
+
+    export let perPage: number = 6;
 
     let media: any[] = [];
     let loading = true;
@@ -12,7 +14,7 @@
         try {
         const res = await queryMedia(
             1, // page
-            6, // perPage
+            perPage, // perPage
             undefined, // id
             "ANIME", // type
             false, // isAdult
