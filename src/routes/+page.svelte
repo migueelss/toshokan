@@ -7,4 +7,9 @@
     <img src="/favicon.png" alt="Logo" class="w-12 h-12 object-cover rounded-lg" />
 </div>
 <HeroCarousel />
+
+Recent Anime
+<MediaList type="ANIME" search="" perPage={9} sort={["START_DATE_DESC"]}/>
+
+Top Ecchi
 <MediaList type="ANIME" search="" perPage={50} genres={["Ecchi"]} sort={["SCORE_DESC"]}/>
