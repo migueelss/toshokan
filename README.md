@@ -21,6 +21,12 @@
 
 ---
 
+## 🧪 Usage Example
+
+Look up “Steins;Gate” and instantly get its full profile — status, synopsis, and related anime. It’s like having your own anime assistant.
+
+---
+
 ## ✨ Features
 
 - 🔎 Search by title or genre  
