@@ -45,7 +45,7 @@
             ["START_DATE_DESC"], // sort
             ["id", "title:romaji", "coverImage:large"] // expectedValues
         );
-        media = (res as any).data?.Page?.media ?? [];;
+        media = (res as any).data?.Page?.media ?? [];
         } catch (e) {
             if (e instanceof Error) {
                 error = e.message;
