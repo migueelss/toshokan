@@ -52,11 +52,11 @@ export async function queryMedia(
     });
 
     if (plainFields.length) {
-        returnValues += plainFields.join("\n");
+        returnValues += plainFields.join("\n") + "\n";
     }
 
     Object.entries(nestedFields).forEach(([key, values]) => {
-        returnValues += `${key} { ${values.join(' ')} }\n`;
+        returnValues += `${key} { ${values.join(' ')} }\n `;
     });
 
     const graphqlQuery = `
