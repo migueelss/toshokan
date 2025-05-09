@@ -105,10 +105,10 @@
           class="w-full aspect-[9/13] object-cover shadow-lg group-hover:shadow-2xl bg-gray-100"
         />
         <strong
-          class="mt-1 font-['Roboto',sans-serif] font-semibold text-base sm:text-lg text-gray-900 text-left break-words whitespace-normal w-full px-1"
-          title={anime.title.romaji}
-        >
-          {anime.title.romaji}
+            class="mt-1 font-['Roboto',sans-serif] font-semibold text-base sm:text-lg text-gray-900 text-left break-words whitespace-normal w-full px-1 line-clamp-2"
+            title={anime.title.romaji}
+            >
+            {anime.title.romaji}
         </strong>
       </div>
     {/each}
