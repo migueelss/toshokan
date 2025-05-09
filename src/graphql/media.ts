@@ -1,6 +1,6 @@
 import type { FuzzyDateInt } from "../types/FuzzyDateInt"
 
-function queryMedia(
+export function queryMedia(
     page: number = 1,
     perPage: number = 25,
     id?: number,
