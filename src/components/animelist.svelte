@@ -12,6 +12,7 @@
     export let perPage: number = 20;
     export let type: string = 'ANIME';
     export let genres: string[] = [];
+    export let sort: string[] = ['POPULARITY_DESC', 'SCORE_DESC']
   
     let animes: Media[] = [];
     let loading = false;
@@ -24,7 +25,7 @@
         $type: MediaType
         $search: String
         $isAdult: Boolean = false
-        $sort: [MediaSort] = [TRENDING_DESC, SEARCH_MATCH]
+        $sort: [MediaSort]
         $genres: [String]
       ) {
         Page(page: $page, perPage: $perPage) {
@@ -51,7 +52,7 @@
         genres,
         type,
         isAdult: false,
-        sort: ['POPULARITY_DESC', 'SCORE_DESC']
+        sort,
       };
       if (search && search.trim() !== '') {
         vars.search = search;
