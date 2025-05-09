@@ -1,11 +1,11 @@
 <p align="center"><img src="./static/favicon.png" height="300" ></p>
 <h1 align="center">📚 Toshokan</h1>
 
-<p align="center"><i>Your anime library – clean, fast, and organized.</i></p>
+<p align="center"><i>Your anime and manga library – clean, fast, and organized.</i></p>
 
 ---
 
-**Toshokan** is an online anime library with organized titles, genres, and airing status. Easy access and scalable structure.
+**Toshokan** is an online anime and manga library with organized titles, genres, and airing status. Easy access and scalable structure.
 
 ---
 
@@ -23,7 +23,7 @@
 
 ## 🧪 Usage Example
 
-Look up “Steins;Gate” and instantly get its full profile — status, synopsis, and related anime. It’s like having your own anime assistant.
+Look up “Steins;Gate” and instantly get its full profile — status, synopsis, and related anime. It’s like having your own anime and manga assistant.
 
 ---
 
