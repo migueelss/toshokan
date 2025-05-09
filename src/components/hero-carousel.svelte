@@ -30,7 +30,7 @@
             }
           }
         `,
-        variables: { search: "Fate/stay night: Unlimited Blade Works" }
+        variables: { search: "Death Note" },
       })
     })
     .then(res => res.json())
@@ -41,6 +41,6 @@
   </script>
   
   {#if anime.length}
-    <img src={anime[1].bannerImage} alt={anime[0].title.romaji} class="w-1/1 h-auto" />
+    <img src={anime[0].bannerImage} alt={anime[0].title.romaji} class="w-1/1 h-auto" />
   {/if}
   
