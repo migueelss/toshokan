@@ -11,6 +11,7 @@
     export let page: number = 1;
     export let perPage: number = 20;
     export let type: string = 'ANIME';
+    export let genres: string[] = [];
   
     let animes: Media[] = [];
     let loading = false;
@@ -23,7 +24,8 @@
         $type: MediaType
         $search: String
         $isAdult: Boolean = false
-        $sort: [MediaSort] = [POPULARITY_DESC, SCORE_DESC]
+        $sort: [MediaSort] = [TRENDING_DESC, SEARCH_MATCH]
+        $genres: [String]
       ) {
         Page(page: $page, perPage: $perPage) {
           pageInfo { hasNextPage }
@@ -32,6 +34,7 @@
             search: $search
             isAdult: $isAdult
             sort: $sort
+            genre_in: $genres
           ) {
             id
             title { romaji }
@@ -45,6 +48,7 @@
       const vars: Record<string, any> = {
         page,
         perPage,
+        genres,
         type,
         isAdult: false,
         sort: ['POPULARITY_DESC', 'SCORE_DESC']
