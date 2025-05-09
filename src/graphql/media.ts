@@ -1,7 +1,7 @@
 import type { FuzzyDateInt } from "../types/FuzzyDateInt"
 import type { MediaFormat, MediaType, MediaStatus, MediaSource, MediaSeason, MediaSort} from "../types/media";
 
-export function queryMedia(
+export async function queryMedia(
     page: number = 1,
     perPage: number = 25,
     id?: number,
@@ -29,13 +29,13 @@ export function queryMedia(
     licensedBy?: number[],
     isLicensed?: boolean,
     genres?: string[],
-    excludeGenres?: string[],
+    excludedGenres?: string[],
     tags?: string[],
     excludedTags?: string[],
     minimumTagRank?: number,
     sort: MediaSort[] = ["POPULARITY_DESC", "SCORE_DESC"],
     expectedValues: string[] = ["id", "title", "coverImage:large"],
-): object {
+): Promise<object> {
 
     let returnValues = "";
     const nestedFields: Record<string, string[]> = {};
@@ -135,5 +135,30 @@ export function queryMedia(
             }
         }
     `;
-    return {}
+
+    const variables: Record<string, any> = {
+        page, perPage, id, type, isAdult, search, format, status, countryOfOrigin, source, season, seasonYear, year, onList,
+        yearLesser, yearGreater, episodeLesser, episodeGreater, durationLesser, durationGreater, chaptersLesser, chapterGreater,
+        volumesLesser, volumeGreater, licensedBy, isLicensed, genres, excludedGenres, tags, excludedTags, minimumTagRank, sort
+    };
+
+    Object.keys(variables).forEach((key) => variables[key] === undefined && delete variables[key]);
+
+    const response = await fetch("https://graphql.anilist.co", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
+        body: JSON.stringify({
+            query: graphqlQuery,
+            variables,
+        }),
+    });
+
+    if (!response.ok) {
+        throw new Error(`AniList API error: ${response.status} ${await response.text()}`);
+    }
+    
+    return await response.json();
 }
