@@ -2,6 +2,7 @@ import type { FuzzyDateInt } from "../types/FuzzyDateInt"
 
 function queryMedia(
     page?: number,
+    perPage: number = 25,
     id?: number,
     type?: "ANIME" | "MANGA",
     isAdult?: boolean,
@@ -49,8 +50,8 @@ function queryMedia(
     seasonYear?: number,
     year?: string,
     onList?: boolean,
-    yearLesser?: FuzzyDateInt,
-    yearGreater?: FuzzyDateInt,
+    yearLesser?: FuzzyDateInt, //YYYYMMDD
+    yearGreater?: FuzzyDateInt, //YYYYMMDD
     episodeLesser?: number,
     episodeGreater?: number,
     durationLesser?: number,
@@ -104,7 +105,8 @@ function queryMedia(
         | "SEARCH_MATCH"
         | "FAVOURITES"
         | "FAVOURITES_DESC"
-    )[] = ["POPULARITY_DESC", "SCORE_DESC"]
+    )[] = ["POPULARITY_DESC", "SCORE_DESC"],
+    expectedValues: string[] = ["id", "title", "coverImage"],
 ): object {
     return {}
 }

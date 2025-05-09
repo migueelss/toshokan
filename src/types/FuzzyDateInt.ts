@@ -1,3 +1,4 @@
+//YYYYMMDD
 export interface FuzzyDateInt {
     year?: number;
     month?: number;
