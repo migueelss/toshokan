@@ -7,4 +7,4 @@
     <img src="/favicon.png" alt="Logo" class="w-12 h-12 object-cover rounded-lg" />
 </div>
 <HeroCarousel />
-<AnimeList type="ANIME" search="" />
+<AnimeList type="ANIME" search="Fate" />
