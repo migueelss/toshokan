@@ -77,7 +77,7 @@
           variables: buildVariables(),
         }),
       });
-      if (!res.ok) throw new Error('Erro ao buscar animes');
+      if (!res.ok) throw new Error('Error at getting media');
       const json = await res.json();
       animes = json.data.Page.media as Media[];
     } catch (err) {

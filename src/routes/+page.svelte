@@ -9,7 +9,7 @@
 <HeroCarousel />
 
 Recent Anime
-<MediaList type="ANIME" search="" perPage={9} sort={["START_DATE_DESC"]}/>
+<MediaList type="ANIME" search="" perPage={6} sort={["START_DATE_DESC"]}/>
 
 Top Ecchi
 <MediaList type="ANIME" search="" perPage={30} genres={["Ecchi"]} sort={["SCORE_DESC"]}/>
