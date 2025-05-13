@@ -9,7 +9,7 @@
     let media: any[] = [];
     let loading = true;
     let error: string | null = null;
-    let expectedValues: string[] = ["id", "title:romaji", "title:english", "title:native", "coverImage:large"];
+    let expectedValues: string[] = ["id", "title:romaji", "title:english", "title:native", "coverImage:large", "bannerImage"];
 
     onMount(async () => {
       loading = true;
@@ -72,7 +72,8 @@
             <h1
                 class="text-2xl"
             >
-                {m.title.english}</h1>
+            <img src={m.bannerImage} alt={m.title.romaji} />
+            {m.title.english}</h1>
             <img src={m.coverImage.large} alt={m.title.romaji} />
         {/each}
         </ul>
