@@ -1,8 +1,6 @@
 <script lang="ts">
     import HeroCarousel from "../components/hero-carousel.svelte";
-    import RecentAnimeList from "../components/recentanime.svelte";
     import MediaList from "../components/medialist.svelte";
-	import Recentanime from "../components/recentanime.svelte";
 </script>
 
 <div class="fixed z-50 bg-gray-900 rounded-lg p-1 shadow-lg bottom-4 right-4 md:top-4 md:left-4 md:bottom-auto md:right-auto">
@@ -10,10 +8,14 @@
 </div>
 <HeroCarousel />
 
-<RecentAnimeList />
+<h1 class="text-2xl">Recent Anime</h1>
+<MediaList type="ANIME" perPage={12} sort={["UPDATED_AT_DESC"]}/>
 
-Top Ecchi Anime
-<MediaList type="ANIME" perPage={10} genres={["Ecchi"]} sort={["SCORE_DESC"]}/>
+<h1 class="text-2xl">Top Anime</h1>
+<MediaList type="ANIME" perPage={12} sort={["SCORE_DESC"]}/>
 
-Top Manga 
-<MediaList type="MANGA" perPage={15} sort={["SCORE_DESC"]}/>
+<h1 class="text-2xl">Top Manga</h1>
+<MediaList type="MANGA" perPage={12} sort={["SCORE_DESC"]}/>
+
+<h1 class="text-2xl">Top Ecchi Anime</h1>
+<MediaList type="ANIME" perPage={12} genres={["Ecchi"]} sort={["SCORE_DESC"]}/>
