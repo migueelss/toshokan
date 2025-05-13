@@ -61,11 +61,11 @@ export async function queryMedia(
 
     const graphqlQuery = `
     query (
-        $page: Int = 1
-        $perPage: Int = 25
+        $page: Int
+        $perPage: Int 
         $id: Int
         $type: MediaType
-        $isAdult: Boolean = false
+        $isAdult: Boolean 
         $search: String
         $format: [MediaFormat]
         $status: MediaStatus
@@ -92,7 +92,7 @@ export async function queryMedia(
         $tags: [String]
         $excludedTags: [String]
         $minimumTagRank: Int
-        $sort: [MediaSort] = [POPULARITY_DESC, SCORE_DESC]
+        $sort: [MediaSort]
         ) {
             Page(page: $page, perPage: $perPage) {
                 pageInfo {
