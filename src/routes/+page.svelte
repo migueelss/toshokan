@@ -24,4 +24,4 @@
 <MediaList type="MANGA" perPage={12} genres={["Hentai"]} sort={["POPULARITY_DESC"]} minimumTagRank={1} isAdult={true} countryOfOrigin={"JP"}/>
 
 <h1 class="text-2xl">Top Pornwha</h1>
-<MediaList type="MANGA" perPage={24} genres={["Hentai"]} sort={["POPULARITY_DESC"]} minimumTagRank={1} isAdult={true} countryOfOrigin={"KR"}/>
+<MediaList type="MANGA" perPage={24} genres={["Hentai"]} sort={["SCORE_DESC"]} minimumTagRank={1} isAdult={true} countryOfOrigin={"KR"}/>
