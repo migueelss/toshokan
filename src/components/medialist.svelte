@@ -3,6 +3,7 @@
   import { queryMedia } from "../graphql/media";
 	import type { MediaFormat, MediaStatus, MediaType, MediaSource, MediaSeason, MediaSort } from '../types/media';
 	import type { FuzzyDateInt } from '../types/FuzzyDateInt';
+  import slugify from '../utils/slugify';
 
   export let page: number = 1;
   export let perPage: number = 6;
@@ -105,8 +106,11 @@
 <p class="text-red-600 text-center">Error: {error}</p>
 {:else}
 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-x-2 gap-y-4 sm:gap-x-4 sm:gap-y-8 px-3 p-3">
-{#each media as m}
-  <div class="flex flex-col items-center transition-transform duration-150 hover:-translate-y-1.5 hover:scale-[1.035] cursor-pointer group w-full">
+  {#each media as m}
+  <a
+    class="flex flex-col items-center transition-transform duration-150 hover:-translate-y-1.5 hover:scale-[1.035] cursor-pointer group w-full"
+    href={`/${m.type === "ANIME" ? "anime" : "manga"}/${m.id}/${slugify(m.title.english || m.title.romaji)}`}
+  >
     <img
       src={m.coverImage.large}
       alt={"Capa de " + m.title.romaji}
@@ -119,7 +123,7 @@
     >
       {m.title.english ? m.title.english : m.title.native}
     </strong>
-  </div>
+  </a>
 {/each}
 </div>
 {/if}
