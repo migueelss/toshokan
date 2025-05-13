@@ -56,7 +56,7 @@ export async function queryMedia(
     }
 
     Object.entries(nestedFields).forEach(([key, values]) => {
-        returnValues += `${key} { ${values.join(' ')} }\n `;
+        returnValues += `${key} { ${values.join(' ')} } `;
     });
 
     const graphqlQuery = `

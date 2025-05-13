@@ -36,7 +36,7 @@
   export let excludedTags: string[] | undefined = undefined;
   export let minimumTagRank: number | undefined = undefined;
   export let sort: MediaSort[] | undefined = undefined;
-  export let expectedValues: string[] = ["id", "title:romaji", "coverImage:large"]
+  export let expectedValues: string[] = ["id", "title:romaji", "title:english", "coverImage:large"]
 
   let media: any[] = [];
   let loading = true;
@@ -117,7 +117,7 @@
       class="mt-1 font-['Roboto',sans-serif] font-semibold text-base sm:text-lg text-left break-words whitespace-normal w-full px-1 line-clamp-2"
       title={anime.title.romaji}
     >
-      {anime.title.romaji}
+      {anime.title.english}
     </strong>
   </div>
 {/each}

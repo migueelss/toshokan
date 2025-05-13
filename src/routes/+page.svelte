@@ -9,7 +9,7 @@
 <HeroCarousel />
 
 <h1 class="text-2xl">Recent Anime</h1>
-<MediaList type="ANIME" perPage={12} sort={["UPDATED_AT_DESC"]}/>
+<MediaList type="ANIME" perPage={12} sort={["START_DATE_DESC"]}/>
 
 <h1 class="text-2xl">Top Anime</h1>
 <MediaList type="ANIME" perPage={12} sort={["SCORE_DESC"]}/>
@@ -17,5 +17,11 @@
 <h1 class="text-2xl">Top Manga</h1>
 <MediaList type="MANGA" perPage={12} sort={["SCORE_DESC"]}/>
 
-<h1 class="text-2xl">Top Ecchi Anime</h1>
-<MediaList type="ANIME" perPage={12} genres={["Ecchi"]} sort={["SCORE_DESC"]}/>
+<h1 class="text-2xl">Top Hentai Anime</h1>
+<MediaList type="ANIME" perPage={12} genres={["Hentai"]} sort={["POPULARITY_DESC"]} minimumTagRank={1} isAdult={true}/>
+
+<h1 class="text-2xl">Top Hentai Manga</h1>
+<MediaList type="MANGA" perPage={12} genres={["Hentai"]} sort={["POPULARITY_DESC"]} minimumTagRank={1} isAdult={true} countryOfOrigin={"JP"}/>
+
+<h1 class="text-2xl">Top Pornwha</h1>
+<MediaList type="MANGA" perPage={24} genres={["Hentai"]} sort={["POPULARITY_DESC"]} minimumTagRank={1} isAdult={true} countryOfOrigin={"KR"}/>
