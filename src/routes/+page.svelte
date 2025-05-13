@@ -12,5 +12,8 @@
 
 <RecentAnimeList />
 
-Top Ecchi
-<MediaList type="ANIME" search="" perPage={30} genres={["Ecchi"]} sort={["SCORE_DESC"]}/>
+Top Ecchi Anime
+<MediaList type="ANIME" perPage={10} genres={["Ecchi"]} sort={["SCORE_DESC"]}/>
+
+Top Manga 
+<MediaList type="MANGA" perPage={15} sort={["SCORE_DESC"]}/>

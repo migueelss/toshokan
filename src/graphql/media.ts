@@ -22,9 +22,9 @@ export async function queryMedia(
     episodeGreater?: number,
     durationLesser?: number,
     durationGreater?: number,
-    chaptersLesser?: number,
+    chapterLesser?: number,
     chapterGreater?: number,
-    volumesLesser?: number,
+    volumeLesser?: number,
     volumeGreater?: number,
     licensedBy?: number[],
     isLicensed?: boolean,
@@ -138,8 +138,8 @@ export async function queryMedia(
 
     const variables: Record<string, any> = {
         page, perPage, id, type, isAdult, search, format, status, countryOfOrigin, source, season, seasonYear, year, onList,
-        yearLesser, yearGreater, episodeLesser, episodeGreater, durationLesser, durationGreater, chaptersLesser, chapterGreater,
-        volumesLesser, volumeGreater, licensedBy, isLicensed, genres, excludedGenres, tags, excludedTags, minimumTagRank, sort
+        yearLesser, yearGreater, episodeLesser, episodeGreater, durationLesser, durationGreater, chapterLesser, chapterGreater,
+        volumeLesser, volumeGreater, licensedBy, isLicensed, genres, excludedGenres, tags, excludedTags, minimumTagRank, sort
     };
 
     Object.keys(variables).forEach((key) => variables[key] === undefined && delete variables[key]);
