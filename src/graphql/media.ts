@@ -1,5 +1,31 @@
 import type { FuzzyDateInt } from "../types/FuzzyDateInt"
-import type { MediaFormat, MediaType, MediaStatus, MediaSource, MediaSeason, MediaSort} from "../types/media";
+import type { MediaFormat, MediaType, MediaStatus, MediaSource, MediaSeason, MediaSort } from "../types/media";
+
+const serverCache = new Map<string, object>();
+
+function getCacheKey(params: object): string {
+    return JSON.stringify(params);
+}
+
+function isBrowser() {
+    return typeof window !== "undefined";
+}
+
+function getFromCache(key: string): object | undefined {
+    if (isBrowser()) {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : undefined;
+    }
+    return serverCache.get(key);
+}
+
+function setToCache(key: string, value: object) {
+    if (isBrowser()) {
+        localStorage.setItem(key, JSON.stringify(value));
+    } else {
+        serverCache.set(key, value);
+    }
+}
 
 export async function queryMedia(
     page: number = 1,
@@ -16,8 +42,8 @@ export async function queryMedia(
     seasonYear?: number,
     year?: string,
     onList?: boolean,
-    yearLesser?: FuzzyDateInt, //YYYYMMDD
-    yearGreater?: FuzzyDateInt, //YYYYMMDD
+    yearLesser?: FuzzyDateInt,
+    yearGreater?: FuzzyDateInt,
     episodeLesser?: number,
     episodeGreater?: number,
     durationLesser?: number,
@@ -36,6 +62,18 @@ export async function queryMedia(
     sort: MediaSort[] = ["POPULARITY_DESC", "SCORE_DESC"],
     expectedValues: string[] = ["id", "title", "coverImage:large"],
 ): Promise<object> {
+    const params = {
+        page, perPage, id, type, isAdult, search, format, status, countryOfOrigin,
+        source, season, seasonYear, year, onList, yearLesser, yearGreater,
+        episodeLesser, episodeGreater, durationLesser, durationGreater,
+        chapterLesser, chapterGreater, volumeLesser, volumeGreater,
+        licensedBy, isLicensed, genres, excludedGenres,
+        tags, excludedTags, minimumTagRank, sort, expectedValues
+    }
+    const key = getCacheKey(params);
+
+    const cached = getFromCache(key);
+    if (cached) return cached;
 
     let returnValues = "";
     const nestedFields: Record<string, string[]> = {};
@@ -43,9 +81,9 @@ export async function queryMedia(
 
     expectedValues.forEach((expected) => {
         if (expected.includes(":")) {
-            const [key, value] = expected.split(":");
-            if (!nestedFields[key]) nestedFields[key] = [];
-            nestedFields[key].push(value);
+            const [k, v] = expected.split(":");
+            if (!nestedFields[k]) nestedFields[k] = [];
+            nestedFields[k].push(v);
         } else {
             plainFields.push(expected);
         }
@@ -55,8 +93,8 @@ export async function queryMedia(
         returnValues += plainFields.join("\n") + "\n";
     }
 
-    Object.entries(nestedFields).forEach(([key, values]) => {
-        returnValues += `${key} { ${values.join(' ')} } `;
+    Object.entries(nestedFields).forEach(([k, v]) => {
+        returnValues += `${k} { ${v.join(' ')} } `;
     });
 
     const graphqlQuery = `
@@ -157,8 +195,11 @@ export async function queryMedia(
     });
 
     if (!response.ok) {
-        throw new Error(`AniList API error: ${response.status} ${await response.text()}`);
+        const text = await response.text();
+        throw new Error(`AniList API error: ${response.status} ${text}`);
     }
-    
-    return await response.json();
+
+    const res = await response.json();
+    setToCache(key, res);
+    return res;
 }
