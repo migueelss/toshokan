@@ -8,6 +8,28 @@
     banner: string;
   };
 
+  const serverCache = new Map<string, object>();
+
+  function isBrowser() {
+    return typeof window !== "undefined";
+  }
+
+  function getFromCache(key: string): object | undefined {
+    if (isBrowser()) {
+      const item = localStorage.getItem(key);
+      return item ? JSON.parse(item) : undefined;
+    }
+    return serverCache.get(key);
+  }
+
+  function setToCache(key: string, value: object) {
+    if (isBrowser()) {
+      localStorage.setItem(key, JSON.stringify(value));
+    } else {
+      serverCache.set(key, value);
+    }
+  }
+
   const medias: { search: string; type: MediaType }[] = [
     { search: "Sakamoto Days", type: "ANIME" },
     { search: "Naruto Shippuden", type: "ANIME" },
@@ -43,7 +65,17 @@
   let loading = true;
   let interval: ReturnType<typeof setInterval>;
 
+  const CACHE_KEY = "media-banners-v1";
+
   async function fetchBanners() {
+    
+    const cached = getFromCache(CACHE_KEY) as MediaBanner[] | undefined;
+    if (cached && Array.isArray(cached) && cached.length > 0) {
+      banners = cached;
+      loading = false;
+      return;
+    }
+
     const queryFields = medias.map(
       (m, i) => `
         m${i}: Media(search: "${m.search.replace(/"/g, '\\"')}", type: ${m.type}) {
@@ -62,25 +94,31 @@
       }
     `;
 
-    const res = await fetch("https://graphql.anilist.co", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query }),
-    });
-    const data = await res.json();
+    try {
+      const res = await fetch("https://graphql.anilist.co", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query }),
+      });
+      const data = await res.json();
 
-    const temp: MediaBanner[] = [];
-    for (let i = 0; i < medias.length; i++) {
-      const media = data.data[`m${i}`];
-      if (media?.bannerImage) {
-        temp.push({
-          title: media.title.english || media.title.romaji,
-          banner: media.bannerImage,
-        });
+      const temp: MediaBanner[] = [];
+      for (let i = 0; i < medias.length; i++) {
+        const media = data.data[`m${i}`];
+        if (media?.bannerImage) {
+          temp.push({
+            title: media.title.english || media.title.romaji,
+            banner: media.bannerImage,
+          });
+        }
       }
+      banners = temp;
+      setToCache(CACHE_KEY, banners); 
+      loading = false;
+    } catch (e) {
+      loading = false;
+      banners = [];
     }
-    banners = temp;
-    loading = false;
   }
 
   onMount(() => {
