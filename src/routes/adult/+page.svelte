@@ -1,8 +1,9 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import AdultGate from "../../components/AdultGate.svelte";
     import Medialist from "../../components/medialist.svelte";
 </script>
 
+<AdultGate>
 <Medialist
     mediaListTitle="ADULT ANIME"
     type="ANIME"
@@ -22,6 +23,7 @@
     mediaListTitle="ADULT MANHWA"
     type="MANGA"
     perPage={24}
-    sort={["TRENDING_DESC"]}
+    sort={["POPULARITY_DESC"]}
     isAdult={true}
     countryOfOrigin={"KR"} />
+</AdultGate>
