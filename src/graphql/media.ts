@@ -12,18 +12,31 @@ function isBrowser() {
 }
 
 function getFromCache(key: string): object | undefined {
-    if (isBrowser()) {
-        const item = localStorage.getItem(key);
-        return item ? JSON.parse(item) : undefined;
+    const data = isBrowser()
+        ? JSON.parse(localStorage.getItem(key) || "null")
+        : serverCache.get(key);
+
+    if (!data || Date.now() > data.expiresAt) {
+        if (!isBrowser()) {
+            serverCache.delete(key);
+        } else {
+            localStorage.removeItem(key);
+        }
+        return undefined;
     }
-    return serverCache.get(key);
+    return data.value;
 }
 
-function setToCache(key: string, value: object) {
+function setToCache(key: string, value: object, ttlMs: number = 2 * 60 * 1000) {
+    const data = {
+        value,
+        expiresAt: Date.now() + ttlMs,
+    };
+
     if (isBrowser()) {
-        localStorage.setItem(key, JSON.stringify(value));
+        localStorage.setItem(key, JSON.stringify(data));
     } else {
-        serverCache.set(key, value);
+        serverCache.set(key, data);
     }
 }
 
