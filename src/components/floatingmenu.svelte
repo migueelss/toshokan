@@ -66,7 +66,7 @@
       {
         key: "anime",
         label: "Anime",
-        href: "/animes",
+        href: "/anime",
         icon: `
           <img src="/anime.svg" alt="Anime" class="w-6 h-6
             dark:invert dark:brightness-90
@@ -78,7 +78,7 @@
       {
         key: "manga",
         label: "Manga",
-        href: "/mangas",
+        href: "/manga",
         icon: `
           <img src="/manga.svg" alt="Manga" class="w-6 h-6
             dark:invert dark:brightness-90
