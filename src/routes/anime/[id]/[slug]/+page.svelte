@@ -4,4 +4,4 @@
   
 </script>
 
-<MediaScreen id={data.id} />
+<MediaScreen type="ANIME" id={data.id} />

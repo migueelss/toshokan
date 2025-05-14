@@ -3,10 +3,11 @@
     import { queryMedia } from "../graphql/singlemedia";
 
     export let id: number;
+    export let type: string;
     let mediaInfo: any = null;
 
     onMount(async () => {
-        const res: any = await queryMedia(id, [
+        const fields = [
             "id",
             "title:romaji",
             "title:english",
@@ -17,9 +18,16 @@
             "type",
             "status",
             "countryOfOrigin",
-            "episodes",
-            "genres",
-        ]);
+            "genres"
+        ];
+
+        if (type === "ANIME") {
+            fields.push("episodes");
+        } else if (type === "MANGA") {
+            fields.push("volumes", "chapters");
+        }
+
+        const res: any = await queryMedia(id, fields);
         if (res) {
             mediaInfo = res.data?.Page.media[0];
         }
@@ -37,7 +45,7 @@
                 <h3>{mediaInfo.title.native}</h3>
                 <p><strong>Type:</strong> {mediaInfo.type}</p>
                 <p><strong>Status:</strong> {mediaInfo.status}</p>
-                <p><strong>Episodes:</strong> {mediaInfo.episodes}</p>
+                <p><strong>{type == "ANIME" ? "Episodes:" : "Volumes:"}</strong> {type == "ANIME" ? mediaInfo.episodes : mediaInfo.volumes}</p>
                 <p><strong>Country of Origin:</strong> {mediaInfo.countryOfOrigin}</p>
                 <p><strong>Genres:</strong> {mediaInfo.genres.join(', ')}</p>
             </div>
