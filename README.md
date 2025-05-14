@@ -29,6 +29,10 @@
 - [ ] Create search pages (with components)
 - [ ] Create mediascreen.svelte component that uses graphql/singlemedia.ts that serves /manga/[id]/[slug] & /anime/[id]/[slug]
 
+## 📝 NOTES
+
+If "RELEASING", there is no info for volumes nor chapters.
+
 ---
 
 ## 🧪 Usage Example
