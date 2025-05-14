@@ -116,7 +116,7 @@
   >
     <img
       src={m.coverImage.large}
-      alt={"Capa de " + m.title.romaji}
+      alt={"Cover of " + m.title.romaji}
       loading="lazy"
       class="w-full aspect-[9/13] object-cover shadow-lg group-hover:shadow-2xl bg-gray-100 rounded-sm"
     />
