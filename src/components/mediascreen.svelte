@@ -45,7 +45,7 @@
                 <h3>{mediaInfo.title.native}</h3>
                 <p><strong>Type:</strong> {mediaInfo.type}</p>
                 <p><strong>Status:</strong> {mediaInfo.status}</p>
-                <p><strong>{type == "ANIME" ? "Episodes:" : "Volumes:"}</strong> {type == "ANIME" ? mediaInfo.episodes : mediaInfo.volumes}</p>
+                <p><strong>{type == "ANIME" ? "Episodes:" : "Chapters:"}</strong> {type == "ANIME" ? mediaInfo.episodes : mediaInfo.chapters}</p>
                 <p><strong>Country of Origin:</strong> {mediaInfo.countryOfOrigin}</p>
                 <p><strong>Genres:</strong> {mediaInfo.genres.join(', ')}</p>
             </div>
