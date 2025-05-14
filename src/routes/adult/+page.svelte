@@ -8,14 +8,14 @@
     mediaListTitle="ADULT ANIME"
     type="ANIME"
     perPage={12}
-    sort={["TRENDING_DESC"]}
+    sort={["SCORE_DESC"]}
     isAdult={true} />
 
 <Medialist
     mediaListTitle="ADULT MANGA"
     type="MANGA"
     perPage={24}
-    sort={["TRENDING_DESC"]}
+    sort={["POPULARITY_DESC"]}
     isAdult={true}
     countryOfOrigin={"JP"} />
 
