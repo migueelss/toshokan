@@ -48,7 +48,7 @@ Look up “Steins;Gate” and instantly get its full profile — status, synopsi
 ## 🔧 Getting Started
 
 ```bash
-git clone https://github.com/your-username/toshokan.git
+git clone https://github.com/migueelss/toshokan.git
 cd toshokan
 npm install
 npm run dev
