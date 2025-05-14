@@ -55,6 +55,18 @@
     });
   
     const options = [
+      {   
+        key: "home",
+        label: "Home",
+        href: "/",
+        icon: `
+          <img src="/home.svg" alt="Home" class="w-6 h-6
+            dark:invert dark:brightness-90
+            invert-0 brightness-100
+            transition-all duration-150
+          " />
+        `
+      },
       {
         key: "anime",
         label: "Anime",
