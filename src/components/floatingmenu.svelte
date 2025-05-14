@@ -4,7 +4,6 @@
     let isDark = false;
   
     function updateTheme(fromStorage = false) {
-
       if (fromStorage) {
         const stored = localStorage.getItem("theme");
         if (stored === "dark") {
@@ -33,12 +32,10 @@
     }
   
     onMount(() => {
-
       const stored = localStorage.getItem("theme");
       if (stored) {
         updateTheme(true);
       } else {
-
         const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         if (systemDark) {
           document.documentElement.classList.add("dark");
@@ -49,18 +46,17 @@
         }
         updateTheme();
       }
-
       const observer = new MutationObserver(() => updateTheme());
       observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     });
   
     const options = [
-      {   
+      {
         key: "home",
         label: "Home",
         href: "/",
         icon: `
-          <img src="/home.svg" alt="Home" class="w-6 h-6
+          <img src="/home.svg" alt="Home" class="w-6 h-6 
             dark:invert dark:brightness-90
             invert-0 brightness-100
             transition-all duration-150
@@ -70,7 +66,7 @@
       {
         key: "anime",
         label: "Anime",
-        href: "/anime",
+        href: "/animes",
         icon: `
           <img src="/anime.svg" alt="Anime" class="w-6 h-6
             dark:invert dark:brightness-90
@@ -82,7 +78,7 @@
       {
         key: "manga",
         label: "Manga",
-        href: "/manga",
+        href: "/mangas",
         icon: `
           <img src="/manga.svg" alt="Manga" class="w-6 h-6
             dark:invert dark:brightness-90
@@ -104,6 +100,10 @@
         `
       }
     ];
+  
+    function handleMenuLinkClick() {
+      open = false;
+    }
   </script>
   
   <div
@@ -113,10 +113,11 @@
            rounded-xl backdrop-blur-md shadow-lg
            min-w-[3.5rem] overflow-hidden transition-all duration-300"
   >
-
+    <!-- (Menu/Hamburger/X) -->
     <button
       type="button"
-      class="w-14 h-14 flex items-center justify-center cursor-pointer
+      aria-label={open ? "Fechar menu" : "Abrir menu"}
+      class="w-14 h-14 flex items-center justify-center
              bg-transparent group
              transition-colors duration-200
              rounded-lg outline-none border-none
@@ -127,6 +128,7 @@
         class="flex items-center justify-center transition-colors duration-150"
       >
         {#if !open}
+          <!-- (Hamburger) -->
           <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7"
             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <line x1="4" y1="7" x2="20" y2="7"
@@ -143,6 +145,7 @@
               stroke-linecap="round"/>
           </svg>
         {:else}
+          <!-- Close Icon with blue accent -->
           <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7"
             fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -182,6 +185,7 @@
             tabindex="0"
             aria-label={opt.label}
             style="transition-delay: {50 + i*40}ms"
+            on:click={handleMenuLinkClick}
           >
             {@html opt.icon}
             <span class="text-xs text-neutral-700 dark:text-neutral-300 mt-1 font-medium">{opt.label}</span>
