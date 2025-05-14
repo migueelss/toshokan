@@ -27,6 +27,7 @@
 - [x] Make app more organized and easier to expand on
 - [ ] Finish media detail pages
 - [ ] Create search pages (with components)
+- [ ] Create mediascreen.svelte component that uses graphql/singlemedia.ts that serves /manga/[id]/[slug] & /anime/[id]/[slug]
 
 ---
 
