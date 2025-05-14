@@ -23,8 +23,10 @@
 
 ## ✅ TODO
 
-- [ ] Add GraphQL queries in /components/graphql
-- [ ] Make app more organized and easier to expand on
+- [x] Add GraphQL queries in /components/graphql
+- [x] Make app more organized and easier to expand on
+- [ ] Finish media detail pages
+- [ ] Create search pages (with components)
 
 ---
 
