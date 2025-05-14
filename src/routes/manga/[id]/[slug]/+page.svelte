@@ -1,9 +1,7 @@
 <script lang="ts">
-    import { page } from '$app/stores';
+    export let data;
     import MediaScreen from '../../../../components/mediascreen.svelte';
-  
-    $: id = parseInt($page.params.id);
     
   </script>
   
-  <MediaScreen {id} />
+  <MediaScreen id={data.id} />
