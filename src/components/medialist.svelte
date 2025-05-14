@@ -39,7 +39,7 @@
   export let excludedTags: string[] | undefined = undefined;
   export let minimumTagRank: number | undefined = undefined;
   export let sort: MediaSort[] | undefined = undefined;
-  export let expectedValues: string[] = ["id", "title:romaji", "title:english", "title:native", "coverImage:large"]
+  export let expectedValues: string[] = ["id", "title:romaji", "title:english", "title:native", "coverImage:large", "type"]
 
   let media: any[] = [];
   let loading = true;
