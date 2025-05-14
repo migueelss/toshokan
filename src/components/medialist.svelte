@@ -5,6 +5,8 @@
 	import type { FuzzyDateInt } from '../types/FuzzyDateInt';
   import slugify from '../utils/slugify';
 
+  export let mediaListTitle: string = "";
+
   export let page: number = 1;
   export let perPage: number = 6;
   export let id: number | undefined = undefined;
@@ -93,7 +95,8 @@
       loading = false;
   });
 </script>
-
+<div class="px-3 p-3 lg:p-5">
+<h1 class="font-semibold text-xl text-lg tracking-tight mb-5 mt-2 dark:text-gray-300">{mediaListTitle}</h1>
 {#if loading}
 <div class="min-h-[100px] flex items-center justify-center">
   <svg width="40" height="40" fill="none" viewBox="0 0 40 40" class="animate-spin">
@@ -105,7 +108,7 @@
 {:else if error}
 <p class="text-red-600 text-center">Error: {error}</p>
 {:else}
-<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-x-2 gap-y-4 sm:gap-x-4 sm:gap-y-8 px-3 p-3">
+<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-x-2 gap-y-4 sm:gap-x-4 sm:gap-y-8">
   {#each media as m}
   <a
     class="flex flex-col items-center transition-transform duration-150 hover:-translate-y-1.5 hover:scale-[1.035] cursor-pointer group w-full"
@@ -115,10 +118,10 @@
       src={m.coverImage.large}
       alt={"Capa de " + m.title.romaji}
       loading="lazy"
-      class="w-full aspect-[9/13] object-cover shadow-lg group-hover:shadow-2xl bg-gray-100"
+      class="w-full aspect-[9/13] object-cover shadow-lg group-hover:shadow-2xl bg-gray-100 rounded-sm"
     />
     <strong
-      class="mt-1 font-['Roboto',sans-serif] font-semibold text-base sm:text-lg text-left break-words whitespace-normal w-full px-1 line-clamp-2"
+      class="mt-1 font-semibold text-base sm:text-lg text-left break-words whitespace-normal w-full px-1 line-clamp-2"
       title={m.title.romaji}
     >
       {m.title.english ? m.title.english : m.title.native}
@@ -127,3 +130,4 @@
 {/each}
 </div>
 {/if}
+</div>
