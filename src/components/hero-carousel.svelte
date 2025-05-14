@@ -141,7 +141,7 @@
     <span class="text-gray-500">Loading...</span>
   </div>
 {:else if banners.length}
-  <div class="relative w-full h-64 overflow-hidden shadow-lg">
+  <div class="relative w-full h-64 lg:h-100 overflow-hidden shadow-lg">
     <div
       class="absolute inset-0 bg-cover bg-center transition-[background-image] duration-700"
       style="background-image: url({banners[current].banner})"

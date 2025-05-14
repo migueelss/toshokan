@@ -1,10 +1,9 @@
 <script lang="ts">
     import HeroCarousel from "../components/hero-carousel.svelte";
     import MediaList from "../components/medialist.svelte";
-    import FloatingMenu from "../components/floatingmenu.svelte";
+
 </script>
 
-<FloatingMenu />
 <HeroCarousel />
 
 <MediaList mediaListTitle="AIRING ANIME" type="ANIME" perPage={12} sort={["TRENDING_DESC"]} status="RELEASING"/>

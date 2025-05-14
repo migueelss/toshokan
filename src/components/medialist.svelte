@@ -121,7 +121,7 @@
       class="w-full aspect-[9/13] object-cover shadow-lg group-hover:shadow-2xl bg-gray-100 rounded-sm"
     />
     <strong
-      class="mt-1 font-semibold text-base sm:text-lg text-left break-words whitespace-normal w-full px-1 line-clamp-2"
+      class="mt-1 font-semibold text-base sm:text-lg text-left break-words whitespace-normal w-full px-1 line-clamp-2 uppercase"
       title={m.title.romaji}
     >
       {m.title.english ? m.title.english : m.title.native}

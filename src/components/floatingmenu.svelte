@@ -3,29 +3,62 @@
     let open = false;
     let isDark = false;
   
-    function updateTheme() {
+    function updateTheme(fromStorage = false) {
+
+      if (fromStorage) {
+        const stored = localStorage.getItem("theme");
+        if (stored === "dark") {
+          document.documentElement.classList.add("dark");
+          isDark = true;
+          return;
+        }
+        if (stored === "light") {
+          document.documentElement.classList.remove("dark");
+          isDark = false;
+          return;
+        }
+      }
       isDark = document.documentElement.classList.contains("dark");
     }
+  
     function toggleTheme() {
       if (isDark) {
         document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
       } else {
         document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
       }
       updateTheme();
     }
+  
     onMount(() => {
-      updateTheme();
-      const observer = new MutationObserver(updateTheme);
+
+      const stored = localStorage.getItem("theme");
+      if (stored) {
+        updateTheme(true);
+      } else {
+
+        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (systemDark) {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("theme", "dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("theme", "light");
+        }
+        updateTheme();
+      }
+
+      const observer = new MutationObserver(() => updateTheme());
       observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     });
   
-    // Navegação via href (para SvelteKit, use <a> ou $app/navigation se necessário)
     const options = [
       {
         key: "anime",
         label: "Anime",
-        href: "/animes",
+        href: "/anime",
         icon: `
           <img src="/anime.svg" alt="Anime" class="w-6 h-6
             dark:invert dark:brightness-90
@@ -37,7 +70,7 @@
       {
         key: "manga",
         label: "Manga",
-        href: "/mangas",
+        href: "/manga",
         icon: `
           <img src="/manga.svg" alt="Manga" class="w-6 h-6
             dark:invert dark:brightness-90
@@ -68,11 +101,10 @@
            rounded-xl backdrop-blur-md shadow-lg
            min-w-[3.5rem] overflow-hidden transition-all duration-300"
   >
-    <!-- Botão principal (Menu/Hamburger/X) -->
+
     <button
       type="button"
-      aria-label={open ? "Fechar menu" : "Abrir menu"}
-      class="w-14 h-14 flex items-center justify-center
+      class="w-14 h-14 flex items-center justify-center cursor-pointer
              bg-transparent group
              transition-colors duration-200
              rounded-lg outline-none border-none
@@ -83,7 +115,6 @@
         class="flex items-center justify-center transition-colors duration-150"
       >
         {#if !open}
-          <!-- Menu Icon (Hamburger) with blue accent & contrast -->
           <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7"
             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <line x1="4" y1="7" x2="20" y2="7"
@@ -100,7 +131,6 @@
               stroke-linecap="round"/>
           </svg>
         {:else}
-          <!-- Close Icon with blue accent -->
           <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7"
             fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -111,7 +141,6 @@
       </span>
     </button>
   
-    <!-- Opções, extensão do fundo -->
     <div
       class="flex flex-col sm:flex-row overflow-hidden
              transition-all duration-300"
@@ -146,7 +175,7 @@
             <span class="text-xs text-neutral-700 dark:text-neutral-300 mt-1 font-medium">{opt.label}</span>
           </a>
         {/each}
-        <!-- Tema (Dark/Light) -->
+        <!--(Dark/Light) -->
         <button
           class="w-14 h-14 flex flex-col items-center justify-center
                  bg-transparent 
