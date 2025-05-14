@@ -73,7 +73,7 @@ export async function queryMedia(
     excludedTags?: string[],
     minimumTagRank?: number,
     sort: MediaSort[] = ["POPULARITY_DESC", "SCORE_DESC"],
-    expectedValues: string[] = ["id", "title", "coverImage:large"],
+    expectedValues: string[] = ["id", "title:romaji", "title:native", "title:english", "coverImage:large"],
 ): Promise<object> {
     const params = {
         page, perPage, id, type, isAdult, search, format, status, countryOfOrigin,

@@ -1,6 +1,3 @@
-import type { FuzzyDateInt } from "../types/FuzzyDateInt"
-import type { MediaFormat, MediaType, MediaStatus, MediaSource, MediaSeason, MediaSort } from "../types/media";
-
 const serverCache = new Map<string, object>();
 
 function getCacheKey(params: object): string {
@@ -41,13 +38,14 @@ function setToCache(key: string, value: object, ttlMs: number = 2 * 60 * 1000) {
 }
 
 export async function queryMedia(
-    page: number = 1,
-    perPage: number = 1,
     id?: number,
-    expectedValues: string[] = ["id", "title", "coverImage:large"],
+    expectedValues: string[] = ["id", "title:romaji", "title:english", "coverImage:large"],
 ): Promise<object> {
+    const page = 1;
+    const perPage = 1;
+
     const params = {
-        page, perPage, id, expectedValues
+        id, expectedValues
     }
     const key = getCacheKey(params);
 
