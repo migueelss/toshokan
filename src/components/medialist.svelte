@@ -10,7 +10,7 @@
   export let page: number = 1;
   export let perPage: number = 6;
   export let id: number | undefined = undefined;
-  export let type: MediaType = "ANIME";
+  export let type: MediaType;
   export let isAdult: boolean = false;
   export let search: string | undefined = undefined;
   export let format: MediaFormat[] | undefined = undefined;
