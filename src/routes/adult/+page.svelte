@@ -8,8 +8,8 @@
     let debouncedQuery = "";
 
     let carouselMedias = [
-        { search: "Someone Stop Her!", type: "MANGA" },
         { search: "Secret Class", type: "MANGA"},
+        { search: "Someone Stop Her!", type: "MANGA" },
         { search: "A Wannabe Golden Gangster", type: "MANGA"},
         { search: "Eroge!: H mo Game mo Kaihatsu Zanmai", type: "ANIME"},
         { search: "Engineering Beauties", type: "MANGA"},
