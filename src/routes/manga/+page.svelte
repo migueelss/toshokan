@@ -5,9 +5,23 @@
 
     let debouncedQuery = "";
 
+    let carouselMedias = [
+        { search: "SOLO LEVELING", type: "MANGA" },
+        { search: "Vagabond", type: "MANGA" },
+        { search: "Pick me Up", type: "MANGA" },
+        { search: "Grand Blue", type: "MANGA" },
+        { search: "Berserk", type: "MANGA" },
+        { search: "Record of Ragnarok", type: "MANGA" },
+        { search: "Oyasumi Punpun", type: "MANGA" },
+        { search: "Solanin", type: "MANGA" },
+        { search: "Homunculus", type: "MANGA" },
+        { search: "Akira", type: "MANGA" },
+        { search: "Sweet Home", type: "MANGA" },
+    ];
+
 </script>
 
-<HeroCarousel />
+<HeroCarousel medias={carouselMedias}/>
 
 <SearchInput on:search={(e) => debouncedQuery = e.detail} />
 

@@ -6,9 +6,22 @@
 
     let debouncedQuery = "";
 
+    let carouselMedias = [
+        { search: "Dragon Ball", type: "ANIME" },
+        { search: "One Piece", type: "ANIME" },
+        { search: "Naruto", type: "ANIME" },
+        { search: "Saint Seiya: THE LOST CANVAS - Meiou Shinwa 2", type: "ANIME" },
+        { search: "Attack on Titan", type: "ANIME" },
+        { search: "My Hero Academia", type: "ANIME" },
+        { search: "Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train", type: "ANIME" },
+        { search: "Death Note", type: "ANIME" },
+        { search: "Sword Art Online", type: "ANIME" },
+        { search: "Fullmetal Alchemist", type: "ANIME" },
+    ];
+
 </script>
 
-<HeroCarousel />
+<HeroCarousel medias={carouselMedias}/>
 
 <SearchInput on:search={(e) => debouncedQuery = e.detail} />
 
