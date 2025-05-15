@@ -6,10 +6,18 @@
     import SearchInput from "../../components/SearchInput.svelte";
 
     let debouncedQuery = "";
+
+    let carouselMedias = [
+        { search: "Someone Stop Her!", type: "MANGA" },
+        { search: "Engineering Beauties", type: "MANGA"},
+        { search: "Himawari wa Yoru ni Saku", type: "ANIME"},
+        { search: "My Stepmother's Friends", type: "MANGA"},
+    ];
+    
 </script>
 
 <AdultGate>
-    <HeroCarousel />
+    <HeroCarousel medias={carouselMedias} isAdult={true}/>
 
     <SearchInput on:search={(e) => debouncedQuery = e.detail} />
 

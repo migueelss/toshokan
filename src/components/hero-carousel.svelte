@@ -30,7 +30,9 @@
     }
   }
 
-  const medias: { search: string; type: MediaType }[] = [
+  export let isAdult: boolean = false;
+
+  export let medias: { search: string; type: string }[] = [
     { search: "Sakamoto Days", type: "ANIME" },
     { search: "Naruto Shippuden", type: "ANIME" },
     { search: "One Piece", type: "ANIME" },
@@ -65,7 +67,8 @@
   let loading = true;
   let interval: ReturnType<typeof setInterval>;
 
-  const CACHE_KEY = "media-banners-v1";
+  const base = JSON.stringify(medias.map(m => ({ search: m.search, type: m.type })));
+  const CACHE_KEY  = `media-banners-${btoa(base)}`;
 
   async function fetchBanners() {
     
@@ -78,7 +81,7 @@
 
     const queryFields = medias.map(
       (m, i) => `
-        m${i}: Media(search: "${m.search.replace(/"/g, '\\"')}", type: ${m.type}) {
+        m${i}: Media(search: "${m.search.replace(/"/g, '\\"')}", type: ${m.type}, isAdult: ${isAdult}) {
           title {
             english
             romaji
