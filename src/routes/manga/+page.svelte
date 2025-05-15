@@ -1,30 +1,17 @@
 <script lang="ts">
     import Medialist from "../../components/medialist.svelte";
     import HeroCarousel from "../../components/hero-carousel.svelte";
+    import SearchInput from "../../components/SearchInput.svelte";
 
-    let query = "";
     let debouncedQuery = "";
-    let timeout: ReturnType<typeof setTimeout>;
-
-    $: if (query) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-        debouncedQuery = query;
-        }, 300);
-    }
 
 </script>
 
 <HeroCarousel />
 
-<input
-  type="text"
-  placeholder="Search..."
-  bind:value={query}
-/>
+<SearchInput on:search={(e) => debouncedQuery = e.detail} />
 
-
-{#if debouncedQuery}
+{#if debouncedQuery.trim() !== ""}
   {#key debouncedQuery}
     <Medialist
       mediaListTitle="SEARCH RESULTS"

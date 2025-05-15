@@ -2,29 +2,26 @@
     import Medialist from "../../components/medialist.svelte";
     import HeroCarousel from "../../components/hero-carousel.svelte";
 
-    let query = "";
-    let debouncedQuery = "";
-    let timeout: ReturnType<typeof setTimeout>;
+    import SearchInput from "../../components/SearchInput.svelte";
 
-    $: if (query) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-        debouncedQuery = query;
-        }, 300);
-    }
+    let debouncedQuery = "";
 
 </script>
 
 <HeroCarousel />
 
-<input
-  type="text"
-  placeholder="Search..."
-  bind:value={query}
-/>
+<SearchInput on:search={(e) => debouncedQuery = e.detail} />
 
-
-{#if debouncedQuery}
+{#if debouncedQuery.trim() !== ""}
+  {#key debouncedQuery}
+    <Medialist
+      mediaListTitle="SEARCH RESULTS"
+      type="ANIME"
+      perPage={24}
+      search={debouncedQuery}
+      sort={["POPULARITY_DESC", "SEARCH_MATCH"]}
+    />
+  {/key}
   {#key debouncedQuery}
     <Medialist
       mediaListTitle="SEARCH RESULTS"
