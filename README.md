@@ -25,11 +25,11 @@
 
 - [x] Add GraphQL queries in /components/graphql
 - [x] Make app more organized and easier to expand on
-- [ ] Finish media detail pages
+- [x] Finish media detail pages
 - [ ] Create search pages (with components)
-- [ ] Create mediascreen.svelte component that uses graphql/singlemedia.ts that serves /manga/[id]/[slug] & /anime/[id]/[slug]
-- [ ] Turn search into a component and improve it
-- [ ] Dynamic Hero-Carousel
+- [x] Create mediascreen.svelte component that uses graphql/singlemedia.ts that serves /manga/[id]/[slug] & /anime/[id]/[slug]
+- [x] Turn search into a component and improve it
+- [x] Dynamic Hero-Carousel
 
 ### 📝 NOTES
 

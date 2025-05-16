@@ -35,15 +35,6 @@
       sort={["POPULARITY_DESC", "SEARCH_MATCH"]}
     />
   {/key}
-  {#key debouncedQuery}
-    <Medialist
-      mediaListTitle="SEARCH RESULTS"
-      type="ANIME"
-      perPage={24}
-      search={debouncedQuery}
-      sort={["POPULARITY_DESC", "SEARCH_MATCH"]}
-    />
-  {/key}
 {:else}
   <Medialist
     mediaListTitle="TRENDING ANIME"
