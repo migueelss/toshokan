@@ -116,7 +116,7 @@
     <!-- (Menu/Hamburger/X) -->
     <button
       type="button"
-      aria-label={open ? "Fechar menu" : "Abrir menu"}
+      aria-label={open ? "Close Menu" : "Open Menu"}
       class="w-14 h-14 flex items-center justify-center
              bg-transparent group
              transition-colors duration-200

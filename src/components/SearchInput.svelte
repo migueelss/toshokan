@@ -42,7 +42,7 @@
   style="width: {openSearch ? (isMobile ? 'calc(100vw - 6rem)' : 'calc(100vw - 4rem)') : '3.5rem'}; height: 3.5rem;"
 >
   <button
-    aria-label={openSearch ? "Fechar pesquisa" : "Abrir pesquisa"}
+    aria-label={openSearch ? "Close Search" : "Open Search"}
     class="w-14 h-14 flex items-center justify-center
            hover:bg-blue-50 dark:hover:bg-blue-600/10
            active:bg-blue-100 dark:active:bg-blue-950/30
