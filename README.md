@@ -30,6 +30,7 @@
 - [x] Create mediascreen.svelte component that uses graphql/singlemedia.ts that serves /manga/[id]/[slug] & /anime/[id]/[slug]
 - [x] Turn search into a component and improve it
 - [x] Dynamic Hero-Carousel
+- [ ] Add filters to search
 
 ### 📝 NOTES
 
