@@ -28,9 +28,16 @@
         </p>
         <button
           on:click={confirmAdult}
-          class="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow transition"
+          class="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow transition mb-2"
         >
           I am of legal age
+        </button>
+
+        <button
+          on:click={() => window.location.href = '/'}
+          class="text-sm text-neutral-500 hover:text-neutral-700 mt-2 bg-gray-100 dark:bg-neutral-800 rounded-lg px-4 py-2"
+        >
+          Go back to homepage
         </button>
       </div>
     </div>
